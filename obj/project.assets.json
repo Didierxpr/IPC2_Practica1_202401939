@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Didiere\\Desktop\\IPC2_202401939\\202401939_IPC2S1\\202401939_IPC2S1.csproj",
+      "projectUniqueName": "C:\\Users\\Didiere\\Desktop\\202401939_IPC2S1\\202401939_IPC2S1.csproj",
       "projectName": "202401939_IPC2S1",
-      "projectPath": "C:\\Users\\Didiere\\Desktop\\IPC2_202401939\\202401939_IPC2S1\\202401939_IPC2S1.csproj",
+      "projectPath": "C:\\Users\\Didiere\\Desktop\\202401939_IPC2S1\\202401939_IPC2S1.csproj",
       "packagesPath": "C:\\Users\\Didiere\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Didiere\\Desktop\\IPC2_202401939\\202401939_IPC2S1\\obj\\",
+      "outputPath": "C:\\Users\\Didiere\\Desktop\\202401939_IPC2S1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Didiere\\AppData\\Roaming\\NuGet\\NuGet.Config"

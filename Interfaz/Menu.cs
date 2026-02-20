@@ -23,7 +23,7 @@ namespace IPC2S1.Interfaz
                 Console.WriteLine("6. Devolver");
                 Console.WriteLine("7. Salir");
 
-                op = EntradaHelper.LeerEntero("Seleccione: ");
+                op = EntradaHelper.LeerEntero("Seleccione: ", 1, 7);
 
                 switch (op)
                 {
@@ -42,7 +42,7 @@ namespace IPC2S1.Interfaz
         {
             string titulo = EntradaHelper.LeerTexto("Título: ");
             string autor = EntradaHelper.LeerTexto("Autor: ");
-            int ejemplar = EntradaHelper.LeerEntero("Ejemplar: ");
+            int ejemplar = EntradaHelper.LeerEntero("Ejemplar (>=1): ", 1);
 
             var libro = new LibroFisico(titulo, autor, biblioteca.GenerarCodigo(), ejemplar);
             biblioteca.Agregar(libro);
@@ -52,36 +52,55 @@ namespace IPC2S1.Interfaz
         {
             string titulo = EntradaHelper.LeerTexto("Título: ");
             string autor = EntradaHelper.LeerTexto("Autor: ");
-            double tam = EntradaHelper.LeerDouble("Tamaño MB: ");
+            double tam = EntradaHelper.LeerDouble("Tamaño MB (>0): ", 0.01);
 
             var libro = new LibroDigital(titulo, autor, biblioteca.GenerarCodigo(), tam);
             biblioteca.Agregar(libro);
         }
 
-        private void BuscarTitulo()
-        {
-            string titulo = EntradaHelper.LeerTexto("Buscar: ");
-            var lista = biblioteca.BuscarTitulo(titulo);
+private void BuscarTitulo()
+{
+    string titulo = EntradaHelper.LeerTexto("Buscar: ");
+    var lista = biblioteca.BuscarTitulo(titulo);
 
-            foreach (var m in lista)
-            {
-                Console.WriteLine("\n----------------");
-                m.MostrarInfo();
-            }
-        }
+    if (lista.Count == 0)
+    {
+        Console.WriteLine("⚠ No se encontraron materiales con ese título.");
+        return;
+    }
 
-        private void Prestar()
-        {
-            string codigo = EntradaHelper.LeerTexto("Código: ");
-            var m = biblioteca.BuscarCodigo(codigo);
-            m?.Prestar();
-        }
+    foreach (var m in lista)
+    {
+        Console.WriteLine("\n----------------");
+        m.MostrarInfo();
+    }
+}
 
-        private void Devolver()
-        {
-            string codigo = EntradaHelper.LeerTexto("Código: ");
-            var m = biblioteca.BuscarCodigo(codigo);
-            m?.Devolver();
-        }
+private void Prestar()
+{
+    string codigo = EntradaHelper.LeerTexto("Código: ");
+    var m = biblioteca.BuscarCodigo(codigo);
+
+    if (m == null)
+    {
+        Console.WriteLine("❌ No existe un material con ese código.");
+        return;
+    }
+
+    m.Prestar();
+}
+private void Devolver()
+{
+    string codigo = EntradaHelper.LeerTexto("Código: ");
+    var m = biblioteca.BuscarCodigo(codigo);
+
+    if (m == null)
+    {
+        Console.WriteLine("❌ No existe un material con ese código.");
+        return;
+    }
+
+    m.Devolver();
+}
     }
 }
