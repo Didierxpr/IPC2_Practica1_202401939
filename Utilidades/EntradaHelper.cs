@@ -11,7 +11,7 @@ namespace IPC2S1.Utilidades
                 texto = Console.ReadLine() ?? "";
                 texto = texto.Trim();
                 if (string.IsNullOrWhiteSpace(texto))
-                    Console.WriteLine("❌ No puede quedar vacío. Intente de nuevo.");
+                    Console.WriteLine("No puede quedar vacío. Intente de nuevo.");
             } while (string.IsNullOrWhiteSpace(texto));
 
             return texto;
@@ -26,19 +26,19 @@ namespace IPC2S1.Utilidades
 
                 if (!int.TryParse(entrada, out int valor))
                 {
-                    Console.WriteLine("❌ Entrada inválida. Debe ser un número entero.");
+                    Console.WriteLine("Entrada inválida. Debe ser un número entero.");
                     continue;
                 }
 
                 if (min.HasValue && valor < min.Value)
                 {
-                    Console.WriteLine($"❌ El valor debe ser >= {min.Value}.");
+                    Console.WriteLine($"El valor debe ser >= {min.Value}.");
                     continue;
                 }
 
                 if (max.HasValue && valor > max.Value)
                 {
-                    Console.WriteLine($"❌ El valor debe ser <= {max.Value}.");
+                    Console.WriteLine($"El valor debe ser <= {max.Value}.");
                     continue;
                 }
 
@@ -55,19 +55,19 @@ namespace IPC2S1.Utilidades
 
                 if (!double.TryParse(entrada, out double valor))
                 {
-                    Console.WriteLine("❌ Entrada inválida. Debe ser un número.");
+                    Console.WriteLine("Entrada inválida. Debe ser un número.");
                     continue;
                 }
 
                 if (min.HasValue && valor < min.Value)
                 {
-                    Console.WriteLine($"❌ El valor debe ser >= {min.Value}.");
+                    Console.WriteLine($"El valor debe ser >= {min.Value}.");
                     continue;
                 }
 
                 if (max.HasValue && valor > max.Value)
                 {
-                    Console.WriteLine($"❌ El valor debe ser <= {max.Value}.");
+                    Console.WriteLine($"El valor debe ser <= {max.Value}.");
                     continue;
                 }
 

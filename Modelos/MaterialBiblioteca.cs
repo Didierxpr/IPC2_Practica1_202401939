@@ -26,10 +26,10 @@ namespace IPC2S1.Modelos
             if (!prestado)
             {
                 prestado = true;
-                Console.WriteLine("✔ Material prestado.");
+                Console.WriteLine("Material prestado.");
             }
             else
-                Console.WriteLine("❌ Ya está prestado.");
+                Console.WriteLine("Ya está prestado.");
         }
 
         public virtual void Devolver()
@@ -37,10 +37,10 @@ namespace IPC2S1.Modelos
             if (prestado)
             {
                 prestado = false;
-                Console.WriteLine("✔ Material devuelto.");
+                Console.WriteLine("Material devuelto.");
             }
             else
-                Console.WriteLine("❌ No estaba prestado.");
+                Console.WriteLine("No estaba prestado.");
         }
 
         public virtual void MostrarInfo()

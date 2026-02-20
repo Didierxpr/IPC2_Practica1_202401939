@@ -14,16 +14,18 @@ namespace IPC2S1.Interfaz
 
             do
             {
-                Console.WriteLine("\n===== BIBLIOTECA =====");
                 Console.WriteLine("1. Registrar Libro Físico");
                 Console.WriteLine("2. Registrar Libro Digital");
-                Console.WriteLine("3. Mostrar Materiales");
+                Console.WriteLine("3. Mostrar Todos");
                 Console.WriteLine("4. Buscar por Título");
-                Console.WriteLine("5. Prestar");
-                Console.WriteLine("6. Devolver");
-                Console.WriteLine("7. Salir");
+                Console.WriteLine("5. Consultar por Código");
+                Console.WriteLine("6. Mostrar Disponibles");
+                Console.WriteLine("7. Mostrar Prestados");
+                Console.WriteLine("8. Prestar");
+                Console.WriteLine("9. Devolver");
+                Console.WriteLine("10. Salir");
 
-                op = EntradaHelper.LeerEntero("Seleccione: ", 1, 7);
+                op = EntradaHelper.LeerEntero("Seleccione: ", 1, 10);
 
                 switch (op)
                 {
@@ -31,11 +33,14 @@ namespace IPC2S1.Interfaz
                     case 2: RegistrarDigital(); break;
                     case 3: biblioteca.MostrarTodos(); break;
                     case 4: BuscarTitulo(); break;
-                    case 5: Prestar(); break;
-                    case 6: Devolver(); break;
+                    case 5: ConsultarCodigo(); break;
+                    case 6: MostrarDisponibles(); break;
+                    case 7: MostrarPrestados(); break;
+                    case 8: Prestar(); break;
+                    case 9: Devolver(); break;
                 }
 
-            } while (op != 7);
+            } while (op != 10);
         }
 
         private void RegistrarFisico()
@@ -65,7 +70,7 @@ private void BuscarTitulo()
 
     if (lista.Count == 0)
     {
-        Console.WriteLine("⚠ No se encontraron materiales con ese título.");
+        Console.WriteLine("No se encontraron materiales con ese título.");
         return;
     }
 
@@ -83,7 +88,7 @@ private void Prestar()
 
     if (m == null)
     {
-        Console.WriteLine("❌ No existe un material con ese código.");
+        Console.WriteLine("No existe un material con ese código.");
         return;
     }
 
@@ -96,11 +101,60 @@ private void Devolver()
 
     if (m == null)
     {
-        Console.WriteLine("❌ No existe un material con ese código.");
+        Console.WriteLine("No existe un material con ese código.");
         return;
     }
 
     m.Devolver();
+}
+
+private void ConsultarCodigo()
+{
+    string codigo = EntradaHelper.LeerTexto("Código: ");
+    var m = biblioteca.BuscarCodigo(codigo);
+
+    if (m == null)
+    {
+        Console.WriteLine("No existe un material con ese código.");
+        return;
+    }
+
+    Console.WriteLine("\n----------------");
+    m.MostrarInfo();
+}
+
+private void MostrarDisponibles()
+{
+    var lista = biblioteca.ObtenerDisponibles();
+
+    if (lista.Count == 0)
+    {
+        Console.WriteLine("No hay materiales disponibles.");
+        return;
+    }
+
+    foreach (var m in lista)
+    {
+        Console.WriteLine("\n----------------");
+        m.MostrarInfo();
+    }
+}
+
+private void MostrarPrestados()
+{
+    var lista = biblioteca.ObtenerPrestados();
+
+    if (lista.Count == 0)
+    {
+        Console.WriteLine("No hay materiales prestados.");
+        return;
+    }
+
+    foreach (var m in lista)
+    {
+        Console.WriteLine("\n----------------");
+        m.MostrarInfo();
+    }
 }
     }
 }

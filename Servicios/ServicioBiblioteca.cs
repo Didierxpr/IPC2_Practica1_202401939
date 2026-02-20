@@ -1,4 +1,5 @@
 using IPC2S1.Modelos;
+using System.Linq;
 
 namespace IPC2S1.Servicios
 
@@ -18,14 +19,14 @@ namespace IPC2S1.Servicios
         public void Agregar(MaterialBiblioteca material)
         {
             materiales.Add(material);
-            Console.WriteLine("✔ Material agregado.");
+            Console.WriteLine("Material agregado.");
         }
 
         public void MostrarTodos()
         {
             if (materiales.Count == 0)
             {
-                Console.WriteLine("⚠ No hay materiales.");
+                Console.WriteLine("No hay materiales.");
                 return;
             }
 
@@ -42,10 +43,21 @@ namespace IPC2S1.Servicios
         }
 
         public List<MaterialBiblioteca> BuscarTitulo(string titulo)
-        {
-            return materiales
-                .Where(m => m.Titulo.ToLower().Contains(titulo.ToLower()))
-                .ToList();
-        }
+{
+    return materiales
+        .Where(m => m.Titulo.ToLower().Contains(titulo.ToLower()))
+        .OrderBy(m => m.Titulo)
+        .ToList();
+}
+
+        public List<MaterialBiblioteca> ObtenerDisponibles()
+{
+    return materiales.Where(m => !m.Prestado).ToList();
+}
+
+public List<MaterialBiblioteca> ObtenerPrestados()
+{
+    return materiales.Where(m => m.Prestado).ToList();
+}
     }
 }
