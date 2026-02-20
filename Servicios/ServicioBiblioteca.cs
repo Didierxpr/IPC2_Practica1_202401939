@@ -59,5 +59,9 @@ public List<MaterialBiblioteca> ObtenerPrestados()
 {
     return materiales.Where(m => m.Prestado).ToList();
 }
+
+public int ContarTodos() => materiales.Count;
+public int ContarDisponibles() => materiales.Count(m => !m.Prestado);
+public int ContarPrestados() => materiales.Count(m => m.Prestado);
     }
 }

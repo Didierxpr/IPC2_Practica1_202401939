@@ -14,6 +14,12 @@ namespace IPC2S1.Interfaz
 
             do
             {
+                Console.Clear();
+                Console.WriteLine("=================================");
+                Console.WriteLine("   SISTEMA DE BIBLIOTECA IPC2");
+                Console.WriteLine("=================================");
+                Console.WriteLine($"Total: {biblioteca.ContarTodos()}  |  Disponibles: {biblioteca.ContarDisponibles()}  |  Prestados: {biblioteca.ContarPrestados()}");
+                Console.WriteLine("\nSeleccione una opción:");
                 Console.WriteLine("1. Registrar Libro Físico");
                 Console.WriteLine("2. Registrar Libro Digital");
                 Console.WriteLine("3. Mostrar Todos");
@@ -39,6 +45,11 @@ namespace IPC2S1.Interfaz
                     case 8: Prestar(); break;
                     case 9: Devolver(); break;
                 }
+                if (op != 10)
+                {
+                    Console.WriteLine("\nPresione ENTER para continuar...");
+                    Console.ReadLine();
+                }
 
             } while (op != 10);
         }
@@ -51,6 +62,8 @@ namespace IPC2S1.Interfaz
 
             var libro = new LibroFisico(titulo, autor, biblioteca.GenerarCodigo(), ejemplar);
             biblioteca.Agregar(libro);
+
+            Console.WriteLine($"Libro físico registrado con código: {libro.Codigo}");
         }
 
         private void RegistrarDigital()
@@ -61,6 +74,8 @@ namespace IPC2S1.Interfaz
 
             var libro = new LibroDigital(titulo, autor, biblioteca.GenerarCodigo(), tam);
             biblioteca.Agregar(libro);
+
+            Console.WriteLine($"Libro digital registrado con código: {libro.Codigo}");
         }
 
 private void BuscarTitulo()
